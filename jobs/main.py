@@ -9,7 +9,7 @@ from src import config
 
 from src.parser import parse_log_line
 from src.transforms import clean_data
-from src.analytics import count_unique_hosts, count_errors_404, top_endpoints, daily_traffic
+from src.analytics import count_unique_hosts, count_errors_404, top_endpoints, daily_traffic, count_errors
 
 def main():
 
