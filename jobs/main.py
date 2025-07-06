@@ -9,7 +9,7 @@ from src import config
 
 from src.parser import parse_log_line
 from src.transforms import clean_data
-from src.analytics import count_unique_hosts, count_errors_404, top_endpoints, daily_traffic, count_errors
+from src.analytics import Inex_routes, hourly_activity, count_unique_hosts, count_errors_404, top_endpoints, daily_traffic, count_errors
 
 def main():
 
@@ -27,9 +27,9 @@ def main():
     
     df_clean = clean_data(df_parsed, config.TIMESTAMP_FORMAT)
 
-
+    hourly_activity(df_clean).show(truncate=False)
 
     spark.stop()
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
