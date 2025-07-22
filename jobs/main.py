@@ -5,11 +5,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from pyspark.sql import SparkSession
 from src import config
-
-
 from src.parser import parse_log_line
 from src.transforms import clean_data
-from src.analytics import Inex_routes, hourly_activity, count_unique_hosts, count_errors_404, top_endpoints, daily_traffic, count_errors
+from src.analytics import hourly_activity, count_unique_hosts, count_errors_404, top_endpoints, daily_traffic, count_errors
+from src.graphs import graph_endpoints, graph_dailyTraffic
 
 def main():
 
@@ -27,7 +26,7 @@ def main():
     
     df_clean = clean_data(df_parsed, config.TIMESTAMP_FORMAT)
 
-    hourly_activity(df_clean).show(truncate=False)
+    graph_dailyTraffic(df_clean)
 
     spark.stop()
 
